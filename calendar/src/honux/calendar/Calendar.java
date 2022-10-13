@@ -1,14 +1,15 @@
 package honux.calendar;
+
 import java.util.Scanner;
 
 public class Calendar {
-	
-	private static final int[] MAX_DAYS = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-	
+
+	private static final int[] MAX_DAYS = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
 	public int getMaxDaysOfMonth(int month) {
 		return MAX_DAYS[month - 1];
 	}
-	
+
 	public void printSampleCalendar() {
 		System.out.println("일  월  화 수  목  금 토");
 		System.out.println("--------------------");
@@ -17,8 +18,9 @@ public class Calendar {
 		System.out.println("15 16 17 18 19 20 21");
 		System.out.println("22 23 24 25 26 27 28");
 	}
+
 	public static void main(String[] args) {
-	
+
 		// 입력받은 월의 최대 일수 출력하기
 //		System.out.println("최대 일수를 알고 싶은 달은?");
 //		Scanner scanner = new Scanner(System.in);
@@ -40,17 +42,42 @@ public class Calendar {
 //				 		
 //		System.out.println(number + "월의 최대 일수는 " + Days[number]);
 //		scanner.close();
-		
+
+//		Scanner scanner = new Scanner(System.in);
+//		Calendar cal = new Calendar();
+//		System.out.println("반복횟수를 입력하세요.");
+//		int repeat = scanner.nextInt();
+//		int i = 0;
+//		int[] months = new int[repeat];
+//		while (i < repeat) {
+//			System.out.println("달을 입력하세요");
+//			int month = scanner.nextInt();
+//			months[i] = month;
+//			i ++;
+//		}
+//		int j = 0;
+//		while (j < repeat) {
+//			System.out.printf("%d월은 %d일까지 있습니다.\n", months[j], cal.getMaxDaysOfMonth(months[j]));
+//			j ++;
+//		}
+//		scanner.close();
 		Scanner scanner = new Scanner(System.in);
 		Calendar cal = new Calendar();
-		System.out.println("달을 입력하세요");
-		int month = scanner.nextInt();
-				
-		System.out.printf("%d월은 %d일까지 있습니다.\n", month, cal.getMaxDaysOfMonth(month));
+
+		System.out.println("반복횟수를 입력하세요.");
+		int repeat = scanner.nextInt();
+		
+		int[] months = new int[repeat];
+		for (int i = 0; i < repeat; i++) {
+			System.out.println("달을 입력하세요");
+			int month = scanner.nextInt();
+			System.out.printf("%d월은 %d일까지 있습니다.\n", month, cal.getMaxDaysOfMonth(month));	
+		}
+		
+		System.out.println("Bye~");
 		scanner.close();
-		
-		cal.printSampleCalendar();
-		
+//		cal.printSampleCalendar();
+
 	}
 
 }
