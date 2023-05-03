@@ -30,4 +30,10 @@ public class PlanItem {
 	public void addPeople(String name) {
 		peoples += name + ",";
 	}
+
+	public String saveString() {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");   // yyyy-MM-dd HH:mm:ss
+		String sdate = formatter.format(planDate);
+		return sdate + "," + "\"" + detail + "\"" + "\n";
+	}
 }
