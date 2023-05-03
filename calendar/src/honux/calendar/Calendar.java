@@ -1,5 +1,9 @@
 package honux.calendar;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Calendar {
@@ -7,6 +11,28 @@ public class Calendar {
 	private static final int[] MAX_DAYS = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	private static final int[] LEAP_MAX_DAYS = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
+	private HashMap <Date, String> planMap;
+	
+	public Calendar() {
+		planMap = new HashMap<Date, String>();
+	}
+	/**
+	 * 
+	 * @param date ex: "2017-06-20"
+	 * @param plan
+	 * @throws ParseException 
+	 */
+	public void registerPlan(String strDate, String plan) throws ParseException {
+		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
+//		System.out.println(date);
+		planMap.put(date, plan);
+	}
+	
+	public String searchPlan(String strDate) throws ParseException {
+		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
+		String plan = planMap.get(date);
+		return plan;
+	}
 	public boolean isLeapYear(int year) {
 		if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0))
 			return true;
@@ -78,7 +104,7 @@ public class Calendar {
 	}
 
 	//simple test code here
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		Calendar c = new Calendar();
 //		c.getWeekDay(1972, 1, 1);
 		System.out.println(c.getWeekDay(1970, 1, 1) == 4);
@@ -86,35 +112,39 @@ public class Calendar {
 		System.out.println(c.getWeekDay(1972, 1, 1) == 6);
 		System.out.println(c.getWeekDay(1973, 1, 1) == 1);
 		System.out.println(c.getWeekDay(1974, 1, 1) == 2);
+		c.registerPlan("2017-06-23", "Let's eat beef!");
+		System.out.println(c.searchPlan("2017-06-23").equals("Let's eat beef!"));
+		
 	}
-	public void printSampleCalendar31() {
-		System.out.println("일 월 화 수 목 금 토");
-		System.out.println("--------------------");
-		System.out.println(" 1  2  3  4  5  6  7");
-		System.out.println(" 8  9 10 11 12 13 14");
-		System.out.println("15 16 17 18 19 20 21");
-		System.out.println("22 23 24 25 26 27 28");
-		System.out.println("29 30 31");
-	}
-
-	public void printSampleCalendar30() {
-		System.out.println("일 월 화 수 목 금 토");
-		System.out.println("--------------------");
-		System.out.println(" 1  2  3  4  5  6  7");
-		System.out.println(" 8  9 10 11 12 13 14");
-		System.out.println("15 16 17 18 19 20 21");
-		System.out.println("22 23 24 25 26 27 28");
-		System.out.println("29 30");
-	}
-
-	public void printSampleCalendar28() {
-		System.out.println("일 월 화 수 목 금 토");
-		System.out.println("--------------------");
-		System.out.println(" 1  2  3  4  5  6  7");
-		System.out.println(" 8  9 10 11 12 13 14");
-		System.out.println("15 16 17 18 19 20 21");
-		System.out.println("22 23 24 25 26 27 28");
-	}
+	
+//	public void printSampleCalendar31() {
+//		System.out.println("일 월 화 수 목 금 토");
+//		System.out.println("--------------------");
+//		System.out.println(" 1  2  3  4  5  6  7");
+//		System.out.println(" 8  9 10 11 12 13 14");
+//		System.out.println("15 16 17 18 19 20 21");
+//		System.out.println("22 23 24 25 26 27 28");
+//		System.out.println("29 30 31");
+//	}
+//
+//	public void printSampleCalendar30() {
+//		System.out.println("일 월 화 수 목 금 토");
+//		System.out.println("--------------------");
+//		System.out.println(" 1  2  3  4  5  6  7");
+//		System.out.println(" 8  9 10 11 12 13 14");
+//		System.out.println("15 16 17 18 19 20 21");
+//		System.out.println("22 23 24 25 26 27 28");
+//		System.out.println("29 30");
+//	}
+//
+//	public void printSampleCalendar28() {
+//		System.out.println("일 월 화 수 목 금 토");
+//		System.out.println("--------------------");
+//		System.out.println(" 1  2  3  4  5  6  7");
+//		System.out.println(" 8  9 10 11 12 13 14");
+//		System.out.println("15 16 17 18 19 20 21");
+//		System.out.println("22 23 24 25 26 27 28");
+//	}
 
 //	public static void main(String[] args) {
 
