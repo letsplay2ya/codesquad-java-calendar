@@ -19,32 +19,58 @@ public class Prompt {
 	 * @return 0 ~ 6 (0 = Sunday, 6 = Saturday)
 	 */
 	public int parseDay(String weekday) {
-		if (weekday.equals("SU")) return 0;
-		else if (weekday.equals("MO")) return 1;
-		else if (weekday.equals("TU")) return 2;
-		else if (weekday.equals("WE")) return 3;
-		else if (weekday.equals("TH")) return 4;
-		else if (weekday.equals("FR")) return 5;
-		else if (weekday.equals("SA")) return 6;
-		else return 0;	
+		switch (weekday) {
+		case "SU":
+			return 0;
+		case "MO":
+			return 1;
+		case "TU":
+			return 2;
+		case "WE":
+			return 3;
+		case "TH":
+			return 4;
+		case "FR":
+			return 5;
+		case "SA":
+			return 6;
+		default:
+			return 0;
+		}
 	}
 
-	
+	/**
+	 * 1. switch case - String
+	 * 2. Plan class - refactoring
+	 * 
+	 */
 	public void runPrompt() throws ParseException {
 		printMenu();
 		Scanner scanner = new Scanner(System.in);
 		Calendar cal = new Calendar();
 
-		while (true) {
+		boolean isLoop = true;
+		while (isLoop) {
 			System.out.println("명령(1, 2, 3, h, q)");
 			String cmd = scanner.next();
-			if(cmd.equals("1")) cmdRegister(scanner, cal);
-			else if (cmd.equals("2")) cmdSearch(scanner, cal);
-			else if (cmd.equals("3")) cmdCal(scanner, cal);
-			else if (cmd.equals("h")) printMenu();
-			else if (cmd.equals("q")) break;
+			switch (cmd) {
+			case "1":
+				cmdRegister(scanner, cal);
+				break;
+			case "2": 
+				cmdSearch(scanner, cal);
+				break;
+			case "3": 
+				cmdCal(scanner, cal);
+				break;
+			case "h": 
+				printMenu();
+				break;
+			case "q": 
+				isLoop = false;
+				break;
+			}
 		}
-
 		System.out.println("Thank you. Bye~");
 		scanner.close();
 	}
